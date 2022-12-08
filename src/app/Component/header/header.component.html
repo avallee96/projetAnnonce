@@ -1,0 +1,32 @@
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="annonce"> annonce </a>
+    </li>
+    <li class="nav-item">
+       <a class="nav-link active" routerLink="connexion"> connexion </a> 
+    </li> 
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="inscription"> inscription </a> 
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="categorie"> catégorie </a> 
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="utilisateur"> utilisateur </a> 
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="perso"> perso </a> 
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="annoncePDF"> exporter des annonces </a> 
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" routerLink="utilisateurPDF"> exporter des utilisateurs </a> 
+    </li>
+      
+    
+        <p>{{user.username}}</p>
+    
+</ul>
+
+<form  (ngSubmit)="logout()"><input type="submit" value="deconnexion"></form>   

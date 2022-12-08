@@ -1,0 +1,24 @@
+form{
+    border: 1px solid;
+    margin: 10px;
+    padding: 5px;
+}
+
+.custom-select{
+    width: 100%;
+    margin: 10px 0;
+}
+
+.table{
+    width:95%;
+    margin:auto;
+}
+
+.table td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+body{
+    background-color: gainsboro;
+}
