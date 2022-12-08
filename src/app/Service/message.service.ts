@@ -9,7 +9,7 @@ export class MessageService {
 
   constructor(private http:HttpClient) { }
 
-  post(id_e:number,id_r:number,titre:string){
-    return this.http.get<Message>(`http://localhost:8015/api/utilisateur/username/${id_e}/${id_r}/${titre}`);
+  post(data : FormData){
+    return this.http.post<Message>('http://localhost:8015/api/message', data);
   }
 }

@@ -61,6 +61,6 @@
       <td><button (click)="supprimer(news.id)" class="btn btn-primary">supprimer n°{{news.id}}</button></td>
       <td><button (click)="modifier(news.id)" class="btn btn-primary">modifier n°{{news.id}}</button></td>
       <td><button (click)="commentaire(news.id)" class="btn btn-primary">voir les commentaires</button></td>
-      <td><button class="btn btn-primary">envoyer un message</button></td>
+      <td><button (click)="message(news.id)" class="btn btn-primary">envoyer un message</button></td>
   </tr>
 </table>

@@ -79,6 +79,10 @@ export class AnnonceComponent implements OnInit{
     this.route.navigateByUrl(`commentaire/${id}`)
   }
 
+  message(id:number){
+    this.route.navigateByUrl(`message/${id}`)
+  }
+
   ajout(): void{
     let formData = new FormData();
     formData.append("id", ""+this.id);

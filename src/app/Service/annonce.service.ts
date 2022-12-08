@@ -30,11 +30,6 @@ export class AnnonceService {
     return this.http.get<Annonce[]>(`http://localhost:8015/api/annonce/utilisateur/${id}`)
   }
 
-  /*
-  post(data : FormData){
-    return this.http.post<Annonce>('http://localhost:8015/api/annonce',data)
-  }*/
-
   post(data : FormData){
     return this.http.put<Annonce>('http://localhost:8015/api/annonce',data)
   }
