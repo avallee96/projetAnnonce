@@ -1,7 +1,7 @@
 <h1 class="text-center">Gestion des annonces </h1>
 
 
-<form *ngIf="user" (ngSubmit)="ajout()">
+<form *ngIf="user != undefined" (ngSubmit)="ajout()">
     <fieldset>
         <legend>ajout d'une annonce</legend>
         <div class="form-group row">
@@ -82,9 +82,10 @@
       <td>{{news.date_pub}}</td>
       <td>{{news.categorie.nom}}</td>
       <td>{{news.utilisateur.username}}</td>
-      <td *ngIf="user"><button (click)="supprimer(news.id)" class="btn btn-primary">supprimer n°{{news.id}}</button></td>
-      <td *ngIf="user"><button (click)="modifier(news.id)" class="btn btn-primary">modifier n°{{news.id}}</button></td>
+      
+      <td *ngIf="user != undefined && user.id == news.utilisateur.id"><button (click)="supprimer(news.id)" class="btn btn-primary">supprimer n°{{news.id}}</button></td>
+      <td *ngIf="user != undefined && user.id == news.utilisateur.id"><button (click)="modifier(news.id)" class="btn btn-primary">modifier n°{{news.id}}</button></td>
       <td><button (click)="commentaire(news.id)" class="btn btn-primary">voir les commentaires</button></td>
-      <td *ngIf="user"><button (click)="messagerie(news.id)" class="btn btn-primary">envoyer un message</button></td>
+      <td *ngIf="user != undefined"><button (click)="messagerie(news.id)" class="btn btn-primary">envoyer un message</button></td>
   </tr>
 </table>

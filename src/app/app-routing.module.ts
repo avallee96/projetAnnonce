@@ -9,19 +9,18 @@ import { InscriptionComponent } from './Component/inscription/inscription.compon
 import { MessageComponent } from './Component/message/message.component';
 import { PersoComponent } from './Component/perso/perso.component';
 import { UtilisateurComponent } from './Component/utilisateur/utilisateur.component';
+import { GuardGuard } from './Guard/guard.guard';
 
 const routes: Routes = [
-  {path:'login', component:ConnexionComponent},
-  {path:'register', component:InscriptionComponent},
   {path:'annonce', component:AnnonceComponent},
-  {path:'categorie', component:CategorieComponent},
+  {path:'categorie', component:CategorieComponent, canActivate : [GuardGuard]},
   {path:'commentaire/:id', component:CommentaireComponent},
-  {path:'message/:id', component:MessageComponent},
-  {path:'utilisateur', component:UtilisateurComponent},
+  {path:'message/:id', component:MessageComponent, canActivate : [GuardGuard]},
+  {path:'utilisateur', component:UtilisateurComponent, canActivate : [GuardGuard]},
   {path:'connexion', component:ConnexionComponent},
   {path:'inscription', component:InscriptionComponent},
-  {path:'perso', component:PersoComponent},
-  {path:'annonce_invalid',component:AnnonceInvalidComponent}
+  {path:'perso', component:PersoComponent, canActivate : [GuardGuard]},
+  {path:'annonce_invalid',component:AnnonceInvalidComponent, canActivate : [GuardGuard]}
 ];
 
 @NgModule({

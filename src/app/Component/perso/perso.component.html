@@ -50,7 +50,7 @@
       <td>{{news.description}}</td>
       <td *ngIf="news.photo">
         <button type="button" class="but-img btn btn-primary " data-toggle="modal">
-          <img class="img-thumbnail" src="/{{news.photo}}">
+          <img class="img-thumbnail" src="http://localhost:8015/{{news.photo}}">
         </button>
       </td>
       <td *ngIf="!news.photo">pas de photo</td>
@@ -61,6 +61,6 @@
       <td><button (click)="supprimer(news.id)" class="btn btn-primary">supprimer n°{{news.id}}</button></td>
       <td><button (click)="modifier(news.id)" class="btn btn-primary">modifier n°{{news.id}}</button></td>
       <td><button (click)="commentaire(news.id)" class="btn btn-primary">voir les commentaires</button></td>
-      <td><button (click)="messagerie(news.id)" class="btn btn-primary">envoyer un message</button></td>
+
   </tr>
 </table>

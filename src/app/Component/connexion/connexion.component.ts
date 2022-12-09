@@ -46,7 +46,8 @@ export class ConnexionComponent implements OnInit{
          /*var header:HeaderComponent = new HeaderComponent(this.router);
           //this.router.navigateByUrl("/afficherCitoyen");
           header.reload();*/
-          this.message = "connexion réussit, vérifie dans la page utilisateur"
+          /*this.message = "connexion réussit, vérifie dans la page utilisateur"*/
+          window.location.replace('/annonce')
              
 
         } )

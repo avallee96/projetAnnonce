@@ -27,9 +27,13 @@ export class CommentaireComponent implements OnInit{
      this.id =+ this.route.snapshot.params['id'];
      this.afficher_all()
      this.commentaire = new Commentaire()
-     let chaine = sessionStorage.getItem('user') ?? "";
-    this.user = JSON.parse(chaine);
-    this.aservice.getbyId(this.id).subscribe(response => this.annonce =response)
+     this.aservice.getbyId(this.id).subscribe(response => this.annonce =response)
+     if(sessionStorage.getItem('user')){
+      let chaine = sessionStorage.getItem('user') ?? "";
+      this.user = JSON.parse(chaine);
+     }
+     
+    
   }
 
 

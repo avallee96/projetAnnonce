@@ -28,6 +28,7 @@
         <select class="custom-select" name="role" [(ngModel)]="idrole">
             <option value="1">admin</option>
             <option value="2">utilisateur</option>
+            <option *ngIf="user.role.id == 3" value="3">superAdmin</option>
         </select>
         <input class="btn btn-primary btn-lg btn-block" type="submit" value="valider">
     </fieldset>
@@ -43,14 +44,14 @@
         <td>validation</td>
         <td>role</td>
     </tr>
-    <tr *ngFor="let user of utilisateurs">
-        <td>{{user.id}}</td>
-        <td>{{user.username}}</td>
-        <td>{{user.password}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.valid}}</td>
-        <td>{{user.role.nom}}</td>
-        <td><button (click)="supprimer(user.id)" class="btn btn-primary">supprimer n°{{user.id}}</button></td>
-        <td><button (click)="modifier(user.id)" class="btn btn-primary">modifier n°{{user.id}}</button></td>
+    <tr *ngFor="let users of utilisateurs">
+        <td>{{users.id}}</td>
+        <td>{{users.username}}</td>
+        <td>{{users.password}}</td>
+        <td>{{users.email}}</td>
+        <td>{{users.valid}}</td>
+        <td>{{users.role.nom}}</td>
+        <td *ngIf="user.role.id == 3"><button (click)="supprimer(users.id)" class="btn btn-primary">supprimer n°{{users.id}}</button></td>
+        <td *ngIf="user.role.id == 3"><button (click)="modifier(users.id)" class="btn btn-primary">modifier n°{{users.id}}</button></td>
     </tr>
 </table>

@@ -16,6 +16,7 @@ export class UtilisateurComponent implements OnInit{
   valid!:boolean
   idrole!:number
   role!: Role
+  user!:Utilisateur
 
   constructor(private uservice:UtilisateurService, private rservice:RoleService){}
   
@@ -24,6 +25,10 @@ export class UtilisateurComponent implements OnInit{
     this.utilisateur = new Utilisateur()
     //this.valid = true
     this.role = new Role()
+    if(sessionStorage.getItem('user')){
+      let chaine = sessionStorage.getItem('user') ?? "";
+      this.user = JSON.parse(chaine);
+    }
   }
 
   afficherAll(){

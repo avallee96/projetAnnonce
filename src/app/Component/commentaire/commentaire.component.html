@@ -55,7 +55,7 @@
         <td>{{com.commentaire}}</td>
         <td>{{com.utilisateur.username}}</td>
         <td>{{com.date_com}}</td>
-        <td *ngIf="user"><button (click)="supprimer(com.id)" class="btn btn-primary">supprimer n°{{com.id}}</button></td>
-        <td *ngIf="user"><button (click)="modifier(com.id)" class="btn btn-primary">modifier n°{{com.id}}</button></td>
+        <td *ngIf="user != undefined && user.id == com.utilisateur.id"><button (click)="supprimer(com.id)" class="btn btn-primary">supprimer n°{{com.id}}</button></td>
+        <td *ngIf="user != undefined && user.id == com.utilisateur.id"><button (click)="modifier(com.id)" class="btn btn-primary">modifier n°{{com.id}}</button></td>
     </tr>
 </table>

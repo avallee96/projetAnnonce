@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { InterceptorInterceptor } from './Interceptor/interceptor.interceptor';
 import { PersoComponent } from './Component/perso/perso.component';
 import { AnnonceInvalidComponent } from './Component/annonce-invalid/annonce-invalid.component';
+import { GuardGuard } from './Guard/guard.guard';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AnnonceInvalidComponent } from './Component/annonce-invalid/annonce-inv
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorInterceptor,
       multi: true,
-    }
+    },
+    GuardGuard
   ],
   bootstrap: [AppComponent]
 })
