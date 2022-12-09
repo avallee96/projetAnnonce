@@ -2,31 +2,35 @@
     <li class="nav-item">
         <a class="nav-link active" routerLink="annonce"> annonce </a>
     </li>
-    <li class="nav-item">
+    <li *ngIf="!user" class="nav-item">
        <a class="nav-link active" routerLink="connexion"> connexion </a> 
     </li> 
-    <li class="nav-item">
+    <li *ngIf="!user" class="nav-item">
         <a class="nav-link active" routerLink="inscription"> inscription </a> 
     </li>
-    <li class="nav-item">
+    <li *ngIf="user.role.id == 1"class="nav-item">
         <a class="nav-link active" routerLink="categorie"> catégorie </a> 
     </li>
-    <li class="nav-item">
+    <li *ngIf="user.role.id == 1" class="nav-item">
         <a class="nav-link active" routerLink="utilisateur"> utilisateur </a> 
     </li>
-    <li class="nav-item">
-        <a class="nav-link active" routerLink="perso"> perso </a> 
+    <li *ngIf="user" class="nav-item">
+        <a class="nav-link active" routerLink="perso"> page de {{user.username}}</a> 
+    </li>
+    <li *ngIf="user.role.id == 1" class="nav-item">
+        <a class="nav-link active" routerLink="annonce_invalid"> page de validation des annonces</a> 
+    </li>
+    <!--<li class="nav-item">
+        <a (click)="exportAnnonce()" class="nav-link active"> exporter des annonces </a> 
     </li>
     <li class="nav-item">
-        <a class="nav-link active" routerLink="annoncePDF"> exporter des annonces </a> 
+        <a class="nav-link active"> exporter des utilisateurs </a> 
+    </li>-->
+    <li *ngIf="user" class="nav-item">
+        <a  (click)="logout()" class="nav-link active" routerLink=#> deconnexion </a> 
     </li>
-    <li class="nav-item">
-        <a class="nav-link active" routerLink="utilisateurPDF"> exporter des utilisateurs </a> 
-    </li>
-      
-    
-        <p>{{user.username}}</p>
     
 </ul>
 
-<form  (ngSubmit)="logout()"><input type="submit" value="deconnexion"></form>   
+<!--<form  (ngSubmit)="logout()"><input type="submit" value="deconnexion"></form>   -->
+<!--(click)="exportUtilisateur()" -->

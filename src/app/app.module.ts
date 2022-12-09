@@ -15,6 +15,8 @@ import { FooterComponent } from './Component/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { InterceptorInterceptor } from './Interceptor/interceptor.interceptor';
+import { PersoComponent } from './Component/perso/perso.component';
+import { AnnonceInvalidComponent } from './Component/annonce-invalid/annonce-invalid.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { InterceptorInterceptor } from './Interceptor/interceptor.interceptor';
     ConnexionComponent,
     InscriptionComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    PersoComponent,
+    AnnonceInvalidComponent
   ],
   imports: [
     RouterModule,

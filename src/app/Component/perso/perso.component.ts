@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Annonce } from 'src/app/Model/annonce.model';
 import { Categorie } from 'src/app/Model/categorie.model';
 import { Message } from 'src/app/Model/message.model';
@@ -7,14 +7,13 @@ import { Utilisateur } from 'src/app/Model/utilisateur.model';
 import { AnnonceService } from 'src/app/Service/annonce.service';
 import { CategorieService } from 'src/app/Service/categorie.service';
 import { MessageService } from 'src/app/Service/message.service';
-import { UtilisateurService } from 'src/app/Service/utilisateur.service';
 
 @Component({
-  selector: 'app-annonce',
-  templateUrl: './annonce.component.html',
-  styleUrls: ['./annonce.component.css']
+  selector: 'app-perso',
+  templateUrl: './perso.component.html',
+  styleUrls: ['./perso.component.css']
 })
-export class AnnonceComponent implements OnInit{
+export class PersoComponent implements OnInit{
   
 
   annonces!:Annonce[]
@@ -28,27 +27,24 @@ export class AnnonceComponent implements OnInit{
   user!:Utilisateur
   id!:number
   message!:Message
-  utilisateur!:string
-  Uti!:Utilisateur
-  
 
 
-  constructor(private aservice: AnnonceService, private cservice: CategorieService, private uservice : UtilisateurService, private route: Router, private mservice : MessageService){}
+  constructor(private aservice: AnnonceService, private cservice: CategorieService, private route: Router, private mservice : MessageService){}
 
 
 
   ngOnInit(): void {
-    this.afficherAll()
+    
     this.annonce = new Annonce()
     this.afficherAll_categorie()
     this.titre ="test"
     this.description ="test"
     let chaine = sessionStorage.getItem('user') ?? "";
     this.user = JSON.parse(chaine);
+    console.log(this.user)
     this.id = 0;
     this.message = new Message()
-    this.utilisateur = ""
-    this.Uti = new Utilisateur()
+    this.afficherAll()
   }
 
   selectEvent(event: any): void {
@@ -60,7 +56,7 @@ export class AnnonceComponent implements OnInit{
   }
 
   afficherAll(){
-    this.aservice.getAll().subscribe(response => this.annonces=response);
+    this.aservice.getAll_utilisateur(this.user.id).subscribe(response => this.annonces=response);
   }
 
   supprimer(id:number){
@@ -125,24 +121,6 @@ export class AnnonceComponent implements OnInit{
     {
       console.log(err.message);
     })
-  }
-
-  cat(): void{
-      if(this.idcategorie == 0){
-        this.afficherAll()
-      } else {
-        this.aservice.getAll_categorie(this.idcategorie).subscribe(response => this.annonces = response)
-      }
-      
-  }
-
-  us(): void{
-    this.uservice.loginUser(this.utilisateur).subscribe(response =>
-      {
-      this.Uti = response
-      console.log(this.Uti.id)
-      this.aservice.getAll_utilisateur(this.Uti.id).subscribe(response => this.annonces = response)
-      })
   }
 
 }

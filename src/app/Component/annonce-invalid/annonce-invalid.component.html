@@ -1,0 +1,31 @@
+<h1 class="text-center">Gestion des annonces à valider</h1>
+
+<table class="table table-striped table-dark table-bordered">
+    <tr >
+        <td>id</td>
+        <td>titre</td>
+        <td>description</td>
+        <td>image</td>
+        <td>date d'expiration</td>
+        <td>date de publication</td>
+        <td>categorie</td>
+        <td>utilisateur</td>
+    </tr>
+    <tr *ngFor="let news of annonces">
+        <td>{{news.id}}</td>
+        <td>{{news.titre}}</td>
+        <td>{{news.description}}</td>
+        <td *ngIf="news.photo">
+          <button type="button" class="but-img btn btn-primary " data-toggle="modal">
+            <img class="img-thumbnail" src="/{{news.photo}}">
+          </button>
+        </td>
+        <td *ngIf="!news.photo">pas de photo</td>
+        <td>{{news.date_exp}}</td>
+        <td>{{news.date_pub}}</td>
+        <td>{{news.categorie.nom}}</td>
+        <td>{{news.utilisateur.username}}</td>
+        <td><button (click)="supprimer(news.id)" class="btn btn-primary">supprimer n°{{news.id}}</button></td>
+        <td><button (click)="valider(news.id)" class="btn btn-primary">valider n°{{news.id}}</button></td>
+    </tr>
+  </table>

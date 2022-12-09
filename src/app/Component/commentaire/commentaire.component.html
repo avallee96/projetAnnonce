@@ -29,7 +29,7 @@
 </table>
 
 
-<form (ngSubmit)="ajout()">
+<form *ngIf="user" form (ngSubmit)="ajout()">
     <fieldset>
         <legend>ajout d'un commentaire</legend>
         <div class="form-group row">
@@ -55,7 +55,7 @@
         <td>{{com.commentaire}}</td>
         <td>{{com.utilisateur.username}}</td>
         <td>{{com.date_com}}</td>
-        <td><button (click)="supprimer(com.id)" class="btn btn-primary">supprimer n°{{com.id}}</button></td>
-        <td><button (click)="modifier(com.id)" class="btn btn-primary">modifier n°{{com.id}}</button></td>
+        <td *ngIf="user"><button (click)="supprimer(com.id)" class="btn btn-primary">supprimer n°{{com.id}}</button></td>
+        <td *ngIf="user"><button (click)="modifier(com.id)" class="btn btn-primary">modifier n°{{com.id}}</button></td>
     </tr>
 </table>

@@ -34,7 +34,15 @@ export class AnnonceService {
     return this.http.put<Annonce>('http://localhost:8015/api/annonce',data)
   }
 
+  postvalid(data : FormData){
+    return this.http.put<Annonce>('http://localhost:8015/api/annonce/validation',data)
+  }
+
   delete(id:number){
     return this.http.delete<Annonce>(`http://localhost:8015/api/annonce/${id}`)
+  }
+
+  export(){
+    return this.http.get<any>('http://localhost:8015/api/export')
   }
 }

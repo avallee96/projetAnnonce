@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Utilisateur } from 'src/app/Model/utilisateur.model';
+import { AnnonceService } from 'src/app/Service/annonce.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit{
 
   user!:Utilisateur
 
-  constructor(private route:Router){}
+  constructor(private route:Router, private aservice:AnnonceService){}
   
   ngOnInit(): void {
     if(sessionStorage.getItem('user')){
@@ -23,7 +24,7 @@ export class HeaderComponent implements OnInit{
 
   reload(): void
   {
-    window.location.reload();
+    window.location.replace('/connexion');
   }
 
 
@@ -31,7 +32,11 @@ export class HeaderComponent implements OnInit{
     console.log('logout');  
     sessionStorage.clear();
     sessionStorage.removeItem('user');
-    this.reload();
-    this.route.navigate(['/connexion']);  
+    //this.route.navigate(['/connexion']); 
+    this.reload(); 
+  }
+
+  exportAnnonce(){
+    this.aservice.export().subscribe(response => {})
   }
 }
