@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { Annonce } from 'src/app/Model/annonce.model';
 import { Categorie } from 'src/app/Model/categorie.model';
+import { Message } from 'src/app/Model/message.model';
 import { Utilisateur } from 'src/app/Model/utilisateur.model';
 import { AnnonceService } from 'src/app/Service/annonce.service';
 import { CategorieService } from 'src/app/Service/categorie.service';
+import { MessageService } from 'src/app/Service/message.service';
 
 @Component({
   selector: 'app-annonce',
@@ -24,9 +26,10 @@ export class AnnonceComponent implements OnInit{
   categorie!:Categorie
   user!:Utilisateur
   id!:number
+  message!:Message
 
 
-  constructor(private aservice: AnnonceService, private cservice: CategorieService, private route: Router){}
+  constructor(private aservice: AnnonceService, private cservice: CategorieService, private route: Router, private mservice : MessageService){}
 
 
 
@@ -39,6 +42,7 @@ export class AnnonceComponent implements OnInit{
     let chaine = sessionStorage.getItem('user') ?? "";
     this.user = JSON.parse(chaine);
     this.id = 0;
+    this.message = new Message()
   }
 
   selectEvent(event: any): void {
@@ -79,7 +83,7 @@ export class AnnonceComponent implements OnInit{
     this.route.navigateByUrl(`commentaire/${id}`)
   }
 
-  message(id:number){
+  messagerie(id:number){
     this.route.navigateByUrl(`message/${id}`)
   }
 
@@ -91,13 +95,23 @@ export class AnnonceComponent implements OnInit{
     formData.append("description", this.annonce.description)
     formData.append("categorie", ""+this.idcategorie)
     formData.append("utilisateur",""+this.user.id)
+    
+    let information = new FormData();
+    information.append("email_e","antoine.vallee.test96@gmail.com")
+    information.append("id_r",""+this.user.id)
+    information.append("titre","attente de confirmation de l'annonce: " + this.annonce.titre)
+    information.append("message","votre annonce est en attente de confirmation")
+    this.mservice.Information(information).subscribe(response =>
+      {
+        console.log("ok pour les messages");
+      })
+    
     this.aservice.post(formData).subscribe(response => {
-      console.log("ok");
-      this.afficherAll()
-      this.annonce = new Annonce()
-      this.afficherAll_categorie()
-      this.idcategorie=0
-
+          this.afficherAll()
+          this.annonce = new Annonce()
+          this.afficherAll_categorie()
+          this.idcategorie=0
+          this.message = new Message()
     },
     
     err=>

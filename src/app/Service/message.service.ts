@@ -12,4 +12,8 @@ export class MessageService {
   post(data : FormData){
     return this.http.post<Message>('http://localhost:8015/api/message', data);
   }
+
+  Information(data : FormData){
+    return this.http.post<Message>('http://localhost:8015/api/message/info', data)
+  }
 }

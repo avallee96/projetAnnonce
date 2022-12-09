@@ -32,8 +32,8 @@ export class MessageComponent implements OnInit{
 
   ajout(){
     let formData = new FormData();
-    formData.append("titre", this.titre);
-    formData.append("message", this.message.message);
+    formData.append("titre", "message de "+this.user.id+ " pour l'annonce: "+ this.annonce.titre);
+    formData.append("message", "bonjour " + this.annonce.utilisateur.username + ", \n \n vous avez reçu un message provenant de "+ this.user.username + ", \n \n message : " +this.message.message + " \n \n pour plus d'information veuillez le contacter via son adresse email : "+this.user.email + "\n \n cordialement \n l'équipe adminitration de l'application");
     formData.append("id_e", ""+this.user.id);
     formData.append("id_r", ""+this.annonce.utilisateur.id)
     this.mservice.post(formData).subscribe(response => 
