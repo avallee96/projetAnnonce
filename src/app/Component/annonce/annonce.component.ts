@@ -46,8 +46,6 @@ export class AnnonceComponent implements OnInit{
     if(sessionStorage.getItem('user')){
       let chaine = sessionStorage.getItem('user') ?? "";
       this.user = JSON.parse(chaine);
-    } else {
-      this.user = new Utilisateur()
     }
     console.log(this.user.id)
     this.id = 0;

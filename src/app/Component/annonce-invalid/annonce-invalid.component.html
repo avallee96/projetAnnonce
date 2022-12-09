@@ -16,9 +16,7 @@
         <td>{{news.titre}}</td>
         <td>{{news.description}}</td>
         <td *ngIf="news.photo">
-          <button type="button" class="but-img btn btn-primary " data-toggle="modal">
-            <img class="img-thumbnail" src="http://localhost:8015/{{news.photo}}">
-          </button>
+            <img class="img-size" src="http://localhost:8015/{{news.photo}}">
         </td>
         <td *ngIf="!news.photo">pas de photo</td>
         <td>{{news.date_exp}}</td>

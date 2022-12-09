@@ -73,9 +73,8 @@
       <td>{{news.titre}}</td>
       <td>{{news.description}}</td>
       <td *ngIf="news.photo">
-        <button type="button" class="but-img btn btn-primary " data-toggle="modal">
-          <img class="img-thumbnail" src="http://localhost:8015/{{news.photo}}">
-        </button>
+          <img class="img-size" src="http://localhost:8015/{{news.photo}}">
+        
       </td>
       <td *ngIf="!news.photo">pas de photo</td>
       <td>{{news.date_exp}}</td>
@@ -83,8 +82,8 @@
       <td>{{news.categorie.nom}}</td>
       <td>{{news.utilisateur.username}}</td>
       
-      <td *ngIf="user != undefined && user.id == news.utilisateur.id"><button (click)="supprimer(news.id)" class="btn btn-primary">supprimer n°{{news.id}}</button></td>
-      <td *ngIf="user != undefined && user.id == news.utilisateur.id"><button (click)="modifier(news.id)" class="btn btn-primary">modifier n°{{news.id}}</button></td>
+      <td *ngIf="user != undefined && (user.id == news.utilisateur.id || user.role.id != 2)"><button (click)="supprimer(news.id)" class="btn btn-primary">supprimer n°{{news.id}}</button></td>
+      <td *ngIf="user != undefined && (user.id == news.utilisateur.id || user.role.id != 2)"><button (click)="modifier(news.id)" class="btn btn-primary">modifier n°{{news.id}}</button></td>
       <td><button (click)="commentaire(news.id)" class="btn btn-primary">voir les commentaires</button></td>
       <td *ngIf="user != undefined"><button (click)="messagerie(news.id)" class="btn btn-primary">envoyer un message</button></td>
   </tr>

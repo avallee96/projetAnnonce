@@ -22,3 +22,8 @@ form{
 body{
     background-color: gainsboro;
 }
+
+.img-size{
+    max-width: 200px;
+    max-height: 200px;
+}
