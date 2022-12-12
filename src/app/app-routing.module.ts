@@ -17,6 +17,7 @@ const routes: Routes = [
   {path:'commentaire/:id', component:CommentaireComponent},
   {path:'message/:id', component:MessageComponent, canActivate : [GuardGuard]},
   {path:'utilisateur', component:UtilisateurComponent, canActivate : [GuardGuard]},
+  {path:'', redirectTo:'connexion',pathMatch:'full'},
   {path:'connexion', component:ConnexionComponent},
   {path:'inscription', component:InscriptionComponent},
   {path:'perso', component:PersoComponent, canActivate : [GuardGuard]},

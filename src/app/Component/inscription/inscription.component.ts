@@ -16,6 +16,8 @@ export class InscriptionComponent implements OnInit{
   valid!:boolean
   idrole!:number
   role!: Role
+  test!:Utilisateur
+  message!:string
 
   constructor(private uservice:UtilisateurService, private rservice:RoleService){}
   
@@ -23,23 +25,29 @@ export class InscriptionComponent implements OnInit{
     this.utilisateur = new Utilisateur()
     this.utilisateur.valid = false
     this.role = new Role()
+    this.message = ""
   }
 
   ajout(){
-    console.log(this.utilisateur.valid);
-    console.log(this.idrole)
     this.rservice.RolebyId(2).subscribe(response => 
       {
       this.role=response
       this.utilisateur.role = this.role;
-      this.uservice.postUser(this.utilisateur).subscribe(response =>
-      {
-        
-        this.utilisateur = new Utilisateur();
-      })
-      })
+      this.uservice.loginUser(this.utilisateur.username).subscribe(response =>
+        {
+          this.test = response
+          console.log(this.test)
+          if(this.test == undefined){
+            this.uservice.postUser(this.utilisateur).subscribe(response =>
+              {
+                this.utilisateur = new Utilisateur();
+                this.message = "vous êtes maintenant inscrit, veuillez vous connectez"
+              })
+          } else {
+              this.message = "vous ne pouvez pas vous inscrire avec un nom d'utilisateur connu dans la base de donnée"
+          }
+          })
+        })
+      }
     
-  }
-
-
 }

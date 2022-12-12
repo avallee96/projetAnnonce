@@ -30,6 +30,7 @@ export class AnnonceComponent implements OnInit{
   message!:Message
   utilisateur!:string
   Uti!:Utilisateur
+  erreur!:string
   
 
 
@@ -52,6 +53,7 @@ export class AnnonceComponent implements OnInit{
     this.message = new Message()
     this.utilisateur = ""
     this.Uti = new Utilisateur()
+    this.erreur = ""
   }
 
   selectEvent(event: any): void {
@@ -143,9 +145,15 @@ export class AnnonceComponent implements OnInit{
     this.uservice.loginUser(this.utilisateur).subscribe(response =>
       {
       this.Uti = response
-      console.log(this.Uti.id)
-      this.aservice.getAll_utilisateur(this.Uti.id).subscribe(response => this.annonces = response)
-      })
+      if(this.Uti != null){
+        this.aservice.getAll_utilisateur(this.Uti.id).subscribe(response => 
+          {
+            this.annonces = response
+          })
+      } else {
+        this.erreur = "utilisateur non trouvé veuillez mettre le nom complète ou vérifier l'orthographe"
+      }
+    });
   }
 
 }
